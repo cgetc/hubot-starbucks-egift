@@ -1,12 +1,11 @@
 {
-  "name": "starbucks-egift-hubot",
+  "name": "hubot-starbucks-egift",
   "version": "0.0.0",
-  "private": true,
   "author": "cgetc <cgetc502@gmail.com>",
   "description": "bot to send Starbucks eGift",
+  "main": "index.coffee",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bin/hubot --adapter slack"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,12 +18,10 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cgetc/starbucks-egift-hubot/issues"
+    "url": "https://github.com/cgetc/hubot-starbucks-egift/issues"
   },
-  "homepage": "https://github.com/cgetc/starbucks-egift-hubot",
+  "homepage": "https://github.com/cgetc/hubot-starbucks-egift",
   "dependencies": {
-    "express": "^4.13.0",
-    "hubot-slack": "^3.3.0",
     "starbucks-egift-client": "0.0.11"
   }
 }
