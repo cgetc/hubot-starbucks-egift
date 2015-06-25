@@ -3,6 +3,7 @@
 
 fs = require 'fs'
 Starbucks = require 'starbucks-egift-client'
+judge = require '../resources/judge'
 
 module.exports = (robot) ->
     starbucks = Starbucks.client
@@ -16,28 +17,20 @@ module.exports = (robot) ->
         credit_month: process.env.STARBUCKS_CREDIT_MONTH,
         credit_year: process.env.STARBUCKS_CREDIT_YEAR
 
-    hit = process.env.STARBUCKS_HIT
-
     messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
 
     robot.router.post "/hubot/starbucks/", (req, res) ->
-        data = JSON.parse req.body.payload
-        if data.alert.status != 'ok'
-            res.end "pass"
+        ret = judge JSON.parse req.body.payload
+        if ret != true
+            res.end ret
             return
 
-        rand = Math.floor(Math.random() * hit)
-        if rand != 0
-            res.end "miss #{rand}"
-            return
-
-        room_name = req.body.room
-        room_name = process.env.HUBOT_DEFAULT_POST_ROOM unless room_name
+        room_name = req.body.room or process.env.HUBOT_DEFAULT_POST_ROOM
 
         starbucks.create_giftcard form, (url) ->
-           	message = robot.random messages + "\n" + url
-            robot.send {room: room_name}, message
-            res.end "send #{room_name}"
+           	message = messages[Math.floor Math.random() * messages.length]
+            robot.send {room: room_name}, message + "\n" + url
+            res.end "send to ##{room_name}"
         , (e) ->
             console.log e
             message = e.getMessage()
