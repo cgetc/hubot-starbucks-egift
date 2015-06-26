@@ -19,13 +19,13 @@ module.exports = (robot) ->
 
     messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
 
-    robot.router.post "/hubot/starbucks/", (req, res) ->
-        ret = judge JSON.parse req.body.payload
+    robot.router.post "/hubot/starbucks", (req, res) ->
+        ret = judge req.body
         if ret != true
             res.end ret
             return
 
-        room_name = req.body.room or process.env.HUBOT_DEFAULT_POST_ROOM
+        room_name = req.params.room or process.env.HUBOT_DEFAULT_POST_ROOM
 
         starbucks.create_giftcard form, (url) ->
            	message = messages[Math.floor Math.random() * messages.length]
