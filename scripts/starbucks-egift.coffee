@@ -21,9 +21,7 @@ module.exports = (robot) ->
 
     robot.router.post "/hubot/starbucks", (req, res) ->
         ret = judge req.body
-        if ret != true
-            res.end ret
-            return
+        return res.end ret if ret isnt true
 
         room_name = req.params.room or process.env.HUBOT_DEFAULT_POST_ROOM
 
@@ -33,5 +31,4 @@ module.exports = (robot) ->
             res.end "send to ##{room_name}"
         , (e) ->
             console.log e
-            message = e.getMessage()
-            res.end "error #{message}"
+            res.end "error #{e.message}"
