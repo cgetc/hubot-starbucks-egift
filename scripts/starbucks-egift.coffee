@@ -15,8 +15,6 @@ module.exports = (robot) ->
         credit_number: process.env.STARBUCKS_CREDIT_NUMBER,
         credit_month: process.env.STARBUCKS_CREDIT_MONTH,
         credit_year: process.env.STARBUCKS_CREDIT_YEAR
-
-    messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
     
     judge = {}
     fs.readdir 'judge', (err, files) ->
@@ -25,6 +23,8 @@ module.exports = (robot) ->
             matches = file.match /(\w+)\.coffee$/
             if matches
                 judge[matches[1]] = require "../judge/#{file}"
+
+    messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
 
     robot.router.post "/:judge/:room_name", (req, res) ->
         ret = judge[req.params.judge] req.body
@@ -39,3 +39,6 @@ module.exports = (robot) ->
         , (e) ->
             console.log e
             res.end "error #{e.message}"
+
+    robot.hear /judge/ , (msg) ->
+        console.log judge
