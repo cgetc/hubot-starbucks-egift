@@ -3,7 +3,6 @@
 
 fs = require 'fs'
 Starbucks = require 'starbucks-egift-client'
-judge = require '../resources/judge'
 
 module.exports = (robot) ->
     starbucks = Starbucks.client
@@ -18,9 +17,17 @@ module.exports = (robot) ->
         credit_year: process.env.STARBUCKS_CREDIT_YEAR
 
     messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
+    
+    judge = {}
+    fs.readdir 'judge', (err, files) ->
+        throw err if err
+        files.forEach (file) ->
+            matches = file.match /(\w+)\.coffee$/
+            if matches
+                judge[matches[1]] = require "../judge/#{file}"
 
-    robot.router.post "/hubot/starbucks", (req, res) ->
-        ret = judge req.body
+    robot.router.post "/:judge/:room_name", (req, res) ->
+        ret = judge[req.params.judge] req.body
         return res.end ret if ret isnt true
 
         room_name = req.params.room or process.env.HUBOT_DEFAULT_POST_ROOM
