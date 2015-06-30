@@ -37,8 +37,8 @@ module.exports = (robot) ->
             robot.send {room: room_name}, message + "\n" + url
             res.end "send to ##{room_name}"
         , (e) ->
-            console.log e
+            robot.logger.error e
             res.end "error #{e.message}"
 
     robot.hear /judge/ , (msg) ->
-        console.log judge
+        robot.logger.info judge
