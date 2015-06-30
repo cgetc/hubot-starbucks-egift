@@ -26,7 +26,7 @@ module.exports = (robot) ->
 
     messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
 
-    robot.router.post "/:judge/:room_name", (req, res) ->
+    robot.router.post "/:judge/:room", (req, res) ->
         ret = judge[req.params.judge] req.body
         return res.end ret if ret isnt true
 
