@@ -7,7 +7,7 @@ Starbucks = require 'starbucks-egift-client'
 module.exports = (robot) ->
     starbucks = Starbucks.client
         site_url: 'https://gift.starbucks.co.jp/card/',
-        remote_url: 'http://127.0.0.1:4444/wd/hub/',
+        remote_url: 'http://127.0.0.1:4444/wd/hub',
         capability: 'chrome'
 
     form = 
