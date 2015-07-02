@@ -1,6 +1,6 @@
 {
   "name": "hubot-starbucks-egift",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "cgetc <cgetc502@gmail.com>",
   "description": "bot to send Starbucks eGift",
   "main": "index.coffee",
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/cgetc/hubot-starbucks-egift",
   "dependencies": {
-    "starbucks-egift-client": "0.0.11"
+    "starbucks-egift-client": "^0.1.0"
   }
 }
