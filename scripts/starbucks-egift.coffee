@@ -29,9 +29,8 @@ module.exports = (robot) ->
         room_name = req.params.room or process.env.HUBOT_DEFAULT_POST_ROOM
         res.end "send to ##{room_name}"
 
-        card_message = messages[Math.floor Math.random() * messages.length]
-        starbucks.create_giftcard card_message, (url) ->
-            message = messages[Math.floor Math.random() * messages.length]
+        message = messages[Math.floor Math.random() * messages.length]
+        starbucks.create_giftcard message.replace(':heart:', '❤'), (url) ->
             robot.send {room: room_name}, message + '\n' + url
         , (e) ->
             robot.logger.error e
