@@ -18,7 +18,7 @@ module.exports = (robot) ->
         files.forEach (file) ->
             matches = file.match /(\w+)\.coffee$/
             if matches
-                judge[matches[1]] = require "../judge/#{file}"
+                judge[matches[1]] = require "../../../judge/#{file}"
 
     messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
 
