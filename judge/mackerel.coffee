@@ -1,5 +1,6 @@
-module.exports = (data) ->
-    if data.alert.status != 'ok'
+module.exports = (robot, req) ->
+    data = req.body
+    if !data.alert or data.alert.status != 'ok'
         return "pass"
     hit = process.env.STARBUCKS_HIT or 1
     rand = Math.floor(Math.random() * hit)

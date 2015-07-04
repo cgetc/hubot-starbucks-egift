@@ -23,7 +23,7 @@ module.exports = (robot) ->
     messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
 
     robot.router.post "/:judge/:room", (req, res) ->
-        ret = judge[req.params.judge] req.body
+        ret = judge[req.params.judge] robot, req
         return res.end ret if ret isnt true
 
         room_name = req.params.room or process.env.HUBOT_DEFAULT_POST_ROOM
