@@ -2,7 +2,7 @@
   "name": "hubot-starbucks-egift",
   "version": "0.0.1",
   "author": "cgetc <cgetc502@gmail.com>",
-  "description": "bot to send Starbucks eGift",
+  "description": "Hubot script sending Starbucks eGift",
   "main": "index.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
