@@ -23,6 +23,13 @@
 ["hubot-starbucks-egift"]
 ```
 
+#### リソースファイルの配備
+```
+export HUBOT_HOME="Hubotのルートディレクトリ"
+cp -P hubot-starbucks-egift/resources.sample $HUBOT_HOME/resources
+cp -P hubot-starbucks-egift/judge.sample $HUBOT_HOME/judge
+```
+
 #### Seleniumをインストール
 * [Dockerfile](https://github.com/SeleniumHQ/docker-selenium)が公開されているので、Docker内に構築するのが手っ取り早いです
 * 詳細は割愛します
