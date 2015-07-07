@@ -2,6 +2,7 @@
 
 ## 概要
 * Webhookから[Starbucks eGift](https://gift.starbucks.co.jp/)を発行するHubotです。
+* 詳しい環境構築方法は[Qiita](http://qiita.com/cgetc/items/692d0eb657c74a02a917)にまとめました。
 
 ## 注意事項
 * 勝手に決済されるため、インストールするサーバのアクセス制限は適切に行ってください。
