@@ -24,7 +24,7 @@ module.exports = (robot) ->
         ret = judge[req.params.judge] robot, req
         if ret.send isnt true
             robot.logger.debug ret.message
-            return ret.end ret.message
+            return res.end ret.message
 
         robot.logger.debug "send to #{ret.options.room}"
         res.end "send to #{ret.options.room}"
