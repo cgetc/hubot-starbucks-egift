@@ -1,6 +1,6 @@
 {
   "name": "hubot-starbucks-egift",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "cgetc <cgetc502@gmail.com>",
   "description": "Hubot script sending Starbucks eGift",
   "main": "index.coffee",

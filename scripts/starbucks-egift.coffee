@@ -20,20 +20,19 @@ module.exports = (robot) ->
             if matches
                 judge[matches[1]] = require "../../../judge/#{file}"
 
-    messages = JSON.parse fs.readFileSync('resources/message.json', 'utf8')
-
-    robot.router.post "/:judge/:room", (req, res) ->
+    robot.router.post "/:judge", (req, res) ->
         ret = judge[req.params.judge] robot, req
-        return res.end ret if ret isnt true
+        if ret.send isnt true
+            robot.logger.debug ret.message
+            return ret.end ret.message
 
-        room_name = req.params.room or process.env.HUBOT_DEFAULT_POST_ROOM
-        res.end "send to ##{room_name}"
+        robot.logger.debug "send to #{ret.options.room}"
+        res.end "send to #{ret.options.room}"
 
-        message = messages[Math.floor Math.random() * messages.length]
-        starbucks.create_giftcard message.replace(':heart:', '❤'), (url) ->
-            robot.send {room: room_name}, message + '\n' + url
+        starbucks.create_giftcard ret.message, (url) ->
+            robot.send ret.options, ret.message + '\n' + url
         , (e) ->
             robot.logger.error e
 
-    robot.hear /judge/ , (msg) ->
-        robot.logger.info judge
+    robot.respond /judge/ , (msg) ->
+        robot.logger.info judge.toString()

@@ -54,7 +54,7 @@ cp -P hubot-starbucks-egift/judge.sample $HUBOT_HOME/judge
 ### Webhookの指定
 
 ```
-http://<ホスト>/<judge内のファイル>/<通知先のchannel>
+http://<ホスト>/<judge内のファイル>
 ```
 
 ## カスタマイズ
@@ -67,7 +67,11 @@ http://<ホスト>/<judge内のファイル>/<通知先のchannel>
 * ファイル名はURLの一部になります
 ```
 module.exports -> (robot, req)->
-    if true
-      return true  //発行する場合
-    "エラーメッセージ"
+    if not_send
+        send: false, message: "エラーメッセージ"
+
+    send: true
+    options:
+        room: "送信するroom"
+    message: "ギフトカード及びチャットのメッセージ"
 ```
