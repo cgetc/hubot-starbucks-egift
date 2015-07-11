@@ -6,6 +6,7 @@ Starbucks = require 'starbucks-egift-client'
 
 module.exports = (robot) ->
     starbucks = Starbucks.client
+        log_dir: process.env.LOG_DIR,
         payment:
             mail_address: process.env.STARBUCKS_MAIL_ADDRESS,
             credit_number: process.env.STARBUCKS_CREDIT_NUMBER,
