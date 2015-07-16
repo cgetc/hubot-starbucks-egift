@@ -24,12 +24,11 @@ module.exports = (robot) ->
     robot.router.post "/:judge", (req, res) ->
         ret = judge[req.params.judge] robot, req
         if ret.send isnt true
-            robot.logger.debug ret.message
+            robot.logger.info ret.message
             return res.end ret.message
 
-        robot.logger.debug "send to #{ret.options.room}"
+        robot.logger.info "send to #{ret.options.room}"
         res.end "send to #{ret.options.room}"
-
         starbucks.create_giftcard ret.message, (url) ->
             robot.send ret.options, ret.message + '\n' + url
         , (e) ->
