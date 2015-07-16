@@ -30,7 +30,12 @@ module.exports = (robot) ->
         robot.logger.info "send to #{ret.options.room}"
         res.end "send to #{ret.options.room}"
         starbucks.create_giftcard ret.message, (url) ->
-            robot.send ret.options, ret.message + '\n' + url
+            message = ''
+            if ret.options.mention
+                message = ret.options.mention + ':'
+                delete ret.options.mention
+                message += ret.message + '\n' + url
+            robot.send ret.options, message
         , (e) ->
             robot.logger.error e
 
